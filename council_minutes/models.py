@@ -5,7 +5,8 @@ from mongoengine import ListField, IntField, EmbeddedDocumentField, EmbeddedDocu
 from mongoengine import LazyReferenceField, DictField, DateTimeField
 from mongoengine.errors import ValidationError, DoesNotExist
 from mongoengine.fields import BaseField
-from.helpers import get_period_choices
+from .helpers import get_period_choices
+from .request_types import REQUEST_TYPE_CHOICES
 
 class Subject(EmbeddedDocument):
 
@@ -255,6 +256,9 @@ class Request(DynamicDocument):
     supports = StringField(default='', display='Soportes')
     extra_analysis = ListField(
         StringField(), display='Analisis Extra')
+    request_tipology = StringField(choices=REQUEST_TYPE_CHOICES, 
+                                    default=REQUEST_TYPE_CHOICES[0][0],
+                                    display='Tipo - Subtipo de solicitud')
     received_date = DateTimeField() #Date when advisor recieves a case from secretary
 
     regulations = {
