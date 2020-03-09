@@ -11,7 +11,7 @@ class TEPR(Request):
 
     origin_program = StringField(
         min_length=4, max_length=4, choices=Request.PLAN_CHOICES,
-        required=True, display='Programa Académico origen', default=Request.PI_ELECTRICA)
+        required=True, display='Programa Académico origen', default=Request.P_ECONOMIA)
     academic_period_transit = StringField(
         max_length=10, required=True, display='Periodo de tránsito', 
         choices=Request.PERIOD_CHOICES, default=Request.PERIOD_DEFAULT)

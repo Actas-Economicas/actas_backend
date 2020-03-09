@@ -53,7 +53,7 @@ class EPCS(Request):
     points = IntField(display='Cantidad de puntos a eximir', default=0)
     # CARE: Choices must be all the programas in the university not only engineering faculty
     bacheilor_program = StringField(
-        choices=Request.PLAN_CHOICES, display='Programa de pregrado', default=Request.PI_AGRICOLA)
+        choices=Request.PLAN_CHOICES, display='Programa de pregrado', default=Request.P_ECONOMIA)
     headquarters = StringField(
         choices=HEAD_CHOICES, display='Sede donde culminó sus estudios de pregrado', default=HC_BOGOTA)
 

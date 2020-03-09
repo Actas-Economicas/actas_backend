@@ -20,7 +20,7 @@ class AAUT(Request):
     last_academic_program = StringField(
         min_length=4, max_length=4, choices=Request.PLAN_CHOICES,
         required=True, display='Anterior Programa Académico',
-        default=Request.PI_CIVIL)
+        default=Request.P_ECONOMIA)
     admission_academic_period = StringField(max_length=10,
                                             display='Periodo de ingreso al nuevo programa',
                                             choices=Request.PERIOD_CHOICES,
