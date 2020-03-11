@@ -29,7 +29,7 @@ class ADIC(Request):
         'SIA: {}{}.',
         ', perfil de {}',
         'Aprobación de propuesta y designación de director en el Acta No. {} de {} ' +
-        'del Consejo de la Facultad de Ingeniería.'
+        'del Consejo de la Facultad de Ciencias Económicas.'
     ]
 
     def cm(self, docx):

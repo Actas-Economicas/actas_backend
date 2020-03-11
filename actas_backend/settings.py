@@ -86,7 +86,7 @@ CORS_ORIGIN_WHITELIST = [
 ]
 
 CORS_ORIGIN_WHITELIST = [
-    "https://www.ingenieria.bogota.unal.edu.co",
+    "http://fce.unal.edu.co",
     "http://localhost:8000",
     "http://127.0.0.1:8000"
 ]

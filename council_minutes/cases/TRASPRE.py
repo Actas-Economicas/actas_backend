@@ -237,7 +237,7 @@ class TRASPRE(Request):
                  'Universidad Nacional de Colombia plan de estudios de {}',
                  'La oferta de asignaturas en cada una de las agrupaciones y componentes del' +
                  ' plan de estudios del programa de {} - perfil {}, la encuentra en el Acuerdo' +
-                 ' No. {} del año {}, expedido por Consejo de Facultad de Ingeniería.',
+                 ' No. {} del año {}, expedido por Consejo de Facultad de Ciencias Económicas.',
                  '¿Cuál fue el puntaje de admisión del solicitante?', 'Puntaje de admisión del ' +
                  'último admitido regular al plan destino (2° plan) en la misma prueba de ' +
                  'ingreso del solicitante* ', 'P.A.P.A. a la fecha de la solicitud', '¿El ' +
@@ -260,7 +260,7 @@ class TRASPRE(Request):
                  'Optativas', 'La oferta de asignaturas optativas en cada una de las ' +
                  'agrupaciones y componentes del plan de estudios del programa curricular de {}' +
                  ', la encuentra en el Acuerdo No. {} del año {}, expedido por el Consejo de ' +
-                 'la Facultad de Ingeniería.', 'Total créditos que se equivalen/convalidan',
+                 'la Facultad de Ciencias Económicas.', 'Total créditos que se equivalen/convalidan',
                  'Bogotá']
 
     def cm(self, docx):

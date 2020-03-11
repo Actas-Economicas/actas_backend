@@ -158,7 +158,7 @@ class TRASPOS(Request):
                  'Universidad Nacional de Colombia plan de estudios de {}',
                  'La oferta de asignaturas en cada una de las agrupaciones y componentes del' +
                  ' plan de estudios del programa de {} - perfil {}, la encuentra en el Acuerdo' +
-                 ' No. {} del año {}, expedido por Consejo de Facultad de Ingeniería.']
+                 ' No. {} del año {}, expedido por Consejo de Facultad de Ciencias Económicas.']
 
     srt_titles = ['I) Datos Generales', 'II) Información Académica']
 
