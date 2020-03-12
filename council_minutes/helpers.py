@@ -156,18 +156,18 @@ def get_queries_by_groups(groups):
             'filter': 'academic_program__in=2864'
         }
     if 'Gestion de las Organizaciones' in groups or 'admin' in groups:
-        options['ALL_ECO'] = {
+        options['ALL_ORG'] = {
             'display': 'Generar las solicitudes del Área Gestion de las Organizaciones',
             'filter': 
                 'academic_program__in=2520&academic_program__in=2869&academic_program__in=2973'
         }
-        options['PRE_ECO'] = {
+        options['PRE_ORG'] = {
             'display': 'Generar las solicitudes del pregrado en Administración de Empresas',
             'filter': 'academic_program=2520'
         }
-        options['POS_ECO'] = {
+        options['POS_ORG'] = {
             'display': 'Generar las solicitudes de posgrados pertenecientes al Área ' + \
                 'Gestion de las Organizaciones',
-            'filter': 'academic_program__in=2869&academic_program__in=2973'
+            'filter': 'academic_program__in=2869&academic_program__in=2973t'
         }
     return options
