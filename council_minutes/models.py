@@ -219,6 +219,18 @@ class Request(DynamicDocument):
     PERIOD_CHOICES = get_period_choices()
     PERIOD_DEFAULT = PERIOD_CHOICES[0][0] if datetime.date.today().month <= 6 else PERIOD_CHOICES[1][0]
 
+
+    HANDLE_METHOD_SIA = 'SIA'
+    HANDLE_METHOD_VENTANILLA = 'VEN'
+    HANDLE_METHOD_CORREO = 'COR'
+    HANDLE_METHOD_OTRO = 'OTR'
+    HANDLE_METHOD_CHOICES = (
+        (HANDLE_METHOD_SIA, 'SIA'),
+        (HANDLE_METHOD_VENTANILLA, 'Ventanilla'),
+        (HANDLE_METHOD_CORREO, 'Correo electrónico'),
+        (HANDLE_METHOD_OTRO, 'Otro')
+    )
+
     _cls = StringField(required=True)
     date_stamp = DateTimeField(default=datetime.datetime.now)
     user = StringField(max_length=255, required=True)
@@ -259,6 +271,9 @@ class Request(DynamicDocument):
     request_tipology = StringField(choices=REQUEST_TYPE_CHOICES, 
                                     default=REQUEST_TYPE_CHOICES[0][0],
                                     display='Tipo - Subtipo de solicitud')
+    handle_method = StringField(choices=HANDLE_METHOD_CHOICES,
+                                    default=HANDLE_METHOD_SIA,
+                                    display= 'Metodo de Radicación')
     received_date = DateTimeField() #Date when advisor recieves a case from secretary
 
     regulations = {
@@ -364,7 +379,7 @@ class Request(DynamicDocument):
         cases = [{'code': type_case.__name__, 'name': type_case.full_name}
                 for type_case in Request.get_subclasses()]
         cases.sort(key=lambda case: case['name'])
-        
+
         return { 'cases': cases }
 
     @classmethod
