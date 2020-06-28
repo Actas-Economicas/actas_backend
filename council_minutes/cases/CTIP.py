@@ -23,7 +23,7 @@ class CTIP(Request):
     str_cm = [
         'cambiar de componente la(s) siguiente(s) asignatura(s) del programa {} ({}), cursada en ' +
         'el periodo académico {}',
-        'debido a que {}realiza adecuadamente la solicitud.'
+        'debido a que {}.'
     ]
 
     str_pcm = [
@@ -37,9 +37,7 @@ class CTIP(Request):
         paragraph.paragraph_format.space_after = Pt(0)
         paragraph.add_run(self.str_council_header + ' ')
         self.cm_answer(paragraph)
-        paragraph.add_run(self.str_cm[1].format(
-            ', ' +
-            '' if self.is_affirmative_response_approval_status() else 'no ') + '. ')
+        paragraph.add_run(', ' + self.str_cm[1].format(self.council_decision))
         if self.is_affirmative_response_approval_status():
             self.add_subjects_change_tipology_table(docx)
 
@@ -61,9 +59,7 @@ class CTIP(Request):
         paragraph.paragraph_format.space_after = Pt(0)
         paragraph.add_run(self.str_comittee_header + ' ')
         self.cm_answer(paragraph)
-        paragraph.add_run(self.str_cm[1].format(
-            ', ' +
-            '' if self.is_affirmative_response_advisor_response() else 'no ') + '. ')
+        paragraph.add_run(', ' + self.str_cm[1].format(self.council_decision))
         if self.is_affirmative_response_advisor_response():
             self.add_subjects_change_tipology_table(docx)
 
@@ -102,3 +98,15 @@ class CTIP(Request):
                 subject.new_tipology[1]
             ])
         table_change_typology(docx, subjects)
+
+    def resource_analysis(self, docx):
+        last_paragraph = docx.paragraphs[-1]
+        self.pcm_answer(last_paragraph)
+    
+    def resource_pre_answer(self, docx):
+        last_paragraph = docx.paragraphs[-1]
+        self.pcm_answer(last_paragraph)
+
+    def resource_answer(self, docx):
+        last_paragraph = docx.paragraphs[-1]
+        self.cm_answer(last_paragraph)

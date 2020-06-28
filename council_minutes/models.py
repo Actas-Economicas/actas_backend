@@ -8,6 +8,7 @@ from mongoengine.fields import BaseField
 from .helpers import get_period_choices
 from .request_types import REQUEST_TYPE_CHOICES
 
+
 class Subject(EmbeddedDocument):
 
     meta = {'allow_inheritance': True}
@@ -77,15 +78,40 @@ class Subject(EmbeddedDocument):
         data = [0, 0, 0, 0, 0]
         for sbj in subjects:
             if sbj.tipology == Subject.TIP_PRE_FUND_OBLIGATORIA:
-                data[0] += sbj.credits
+                try:
+                    if float(sbj.grade) >= 3.0:
+                        data[0] += sbj.credits
+                except ValueError:
+                    if sbj.grade in ('AP', 'AS'):
+                        data[0] += sbj.credits
             elif sbj.tipology == Subject.TIP_PRE_FUND_OPTATIVA:
-                data[1] += sbj.credits
+                try:
+                    if float(sbj.grade) >= 3.0:
+                        data[1] += sbj.credits
+                except ValueError:
+                    if sbj.grade in ('AP', 'AS'):
+                        data[1] += sbj.credits
             elif sbj.tipology == Subject.TIP_PRE_DISC_OBLIGATORIA:
-                data[2] += sbj.credits
+                try:
+                    if float(sbj.grade) >= 3.0:
+                        data[2] += sbj.credits
+                except ValueError:
+                    if sbj.grade in ('AP', 'AS'):
+                        data[2] += sbj.credits
             elif sbj.tipology == Subject.TIP_PRE_DISC_OPTATIVA:
-                data[3] += sbj.credits
+                try:
+                    if float(sbj.grade) >= 3.0:
+                        data[3] += sbj.credits
+                except ValueError:
+                    if sbj.grade in ('AP', 'AS'):
+                        data[3] += sbj.credits
             elif sbj.tipology == Subject.TIP_PRE_LIBRE_ELECCION:
-                data[4] += sbj.credits
+                try:
+                    if float(sbj.grade) >= 3.0:
+                        data[4] += sbj.credits
+                except ValueError:
+                    if sbj.grade in ('AP', 'AS'):
+                        data[4] += sbj.credits
         return data
 
 
@@ -105,7 +131,7 @@ class Request(DynamicDocument):
     )
     decision_maker = decision_makers[0]
 
-    #Request is in cm, pcm (or not)
+    # Request is in cm, pcm (or not)
     in_cm = True
     in_pcm = True
 
@@ -217,7 +243,8 @@ class Request(DynamicDocument):
     )
 
     PERIOD_CHOICES = get_period_choices()
-    PERIOD_DEFAULT = PERIOD_CHOICES[0][0] if datetime.date.today().month <= 6 else PERIOD_CHOICES[1][0]
+    PERIOD_DEFAULT = PERIOD_CHOICES[0][0] if datetime.date.today(
+    ).month <= 6 else PERIOD_CHOICES[1][0]
 
 
     HANDLE_METHOD_SIA = 'SIA'
@@ -237,12 +264,13 @@ class Request(DynamicDocument):
     consecutive_minute = IntField(
         min_value=0, default=0, display='Número del Acta de Consejo de Facultad')
     consecutive_minute_ac = IntField(
-        min_value=0, default=0, display='Número del Acta de Comité Asesor') #ac stands for advisory committe
+        min_value=0, default=0, display='Número del Acta de Comité Asesor')  # ac stands for advisory committe
     year = IntField(
         min_value=2000, max_value=2100, display='Año del Acta', default=datetime.date.today().year)
-    to_legal = BooleanField(default=False, display='Sugerir remitir caso a legataria')
+    to_legal = BooleanField(
+        default=False, display='Sugerir remitir caso a Comisión Delegataria')
     date = DateTimeField(default=datetime.date.today,
-                     display='Fecha de radicación')
+                         display='Fecha de radicación')
     academic_program = StringField(
         min_length=4, max_length=4, choices=PLAN_CHOICES,
         display='Programa Académico', default=P_ECONOMIA)
@@ -254,7 +282,7 @@ class Request(DynamicDocument):
     student_name = StringField(
         max_length=512, display='Nombre del Estudiante', default='')
     academic_period = StringField(
-        max_length=10, display='Periodo', choices=PERIOD_CHOICES, default=PERIOD_DEFAULT)
+        max_length=10, display='Periodo Académico Actual', choices=PERIOD_CHOICES, default=PERIOD_DEFAULT)
     approval_status = StringField(
         min_length=2, max_length=2, choices=AS_CHOICES,
         default=AS_EN_ESPERA, display='Estado de Aprobación')
@@ -379,7 +407,6 @@ class Request(DynamicDocument):
         cases = [{'code': type_case.__name__, 'name': type_case.full_name}
                 for type_case in Request.get_subclasses()]
         cases.sort(key=lambda case: case['name'])
-
         return { 'cases': cases }
 
     @classmethod
@@ -428,7 +455,8 @@ class Request(DynamicDocument):
 
 class Professor(EmbeddedDocument):
 
-    name = StringField(required=True, default='Nombre profesor', display='Nombre')
+    name = StringField(
+        required=True, default='Nombre profesor', display='Nombre')
     department = StringField(
         display='Departamento', choices=Request.DP_CHOICES, default=Request.DP_EXTERNO_FACULTAD)
     institution = StringField(display='Institución')
@@ -444,12 +472,14 @@ class Person(DynamicDocument):
     student_name = StringField(
         max_length=512, display='Nombre del Estudiante', default='')
 
+
 class SubjectAutofill(DynamicDocument):
     subject_code = StringField(
         display='Código de la Asignatura')
     subject_name = StringField(
         max_length=512, display='Nombre de la Asignatura', default='')
-        
+
+
 class RequestChanges(DynamicDocument):
     request_id = LazyReferenceField(Request, required=True)
     user = StringField(required=True)

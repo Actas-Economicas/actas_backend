@@ -27,7 +27,7 @@ class TEPR(Request):
 
     str_cm = [
         'tránsito del programa {} ({}) al programa {} ({}), a partir del periodo académico {}',
-        'debido a que {}justifica debidamente la solicitud.'
+        'debido a que {}.'
     ]
 
     str_pcm = [
@@ -60,7 +60,7 @@ class TEPR(Request):
         )
         paragraph.add_run(
             self.str_cm[1].format(
-                '' if self.is_affirmative_response_advisor_response() else 'no '
+                self.council_decision
             )
         )
 
@@ -111,6 +111,18 @@ class TEPR(Request):
         )
         paragraph.add_run(
             self.str_cm[1].format(
-                '' if self.is_affirmative_response_advisor_response() else 'no '
+                self.council_decision
             )
         )
+
+    def resource_analysis(self, docx):
+        last_paragraph = docx.paragraphs[-1]
+        self.pcm_answer(last_paragraph)
+    
+    def resource_pre_answer(self, docx):
+        last_paragraph = docx.paragraphs[-1]
+        self.pcm_answer(last_paragraph)
+
+    def resource_answer(self, docx):
+        last_paragraph = docx.paragraphs[-1]
+        self.cm_answer(last_paragraph)

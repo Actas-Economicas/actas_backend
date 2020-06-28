@@ -106,6 +106,7 @@ class APGD(Request):
         paragraph = docx.add_paragraph()
         paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
         paragraph.paragraph_format.space_after = Pt(0)
+        paragraph.add_run(self.str_council_header + ' ')
         self.cm_answer(paragraph)
         self.cm_grade(docx)
         if self.is_affirmative_response_approval_status():
@@ -118,7 +119,6 @@ class APGD(Request):
                 ' ' + self.str_cm[8] + ' ' + self.council_decision + '.')
 
     def cm_answer(self, paragraph):
-        paragraph.add_run(self.str_council_header + ' ')
         # pylint: disable=no-member
         paragraph.add_run(
             self.get_approval_status_display().upper() + ':').font.bold = True
@@ -128,6 +128,8 @@ class APGD(Request):
         paragraph = docx.add_paragraph()
         paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
         paragraph.paragraph_format.space_after = Pt(0)
+        paragraph.add_run(self.str_answer + ': ').font.bold = True
+        paragraph.add_run(self.str_comittee_header + ' ')
         self.pcm_answer(paragraph)
         self.cm_grade(docx)
         if self.is_affirmative_response_advisor_response():
@@ -141,8 +143,6 @@ class APGD(Request):
 
     def pcm_answer(self, paragraph):
         # pylint: disable=no-member
-        paragraph.add_run(self.str_answer + ': ').font.bold = True
-        paragraph.add_run(self.str_comittee_header + ' ')
         paragraph.add_run(
             self.get_advisor_response_display().upper() + ':').font.bold = True
 
@@ -247,3 +247,15 @@ class APGD(Request):
                 else:
                     paragraph.add_run(
                         ' ' + self.str_cm[4] + ' ' + co_advc.get_inst_co_advisor_display() + '.')
+
+    def resource_analysis(self, docx):
+        last_paragraph = docx.paragraphs[-1]
+        self.pcm_answer(last_paragraph)
+    
+    def resource_pre_answer(self, docx):
+        last_paragraph = docx.paragraphs[-1]
+        self.pcm_answer(last_paragraph)
+
+    def resource_answer(self, docx):
+        last_paragraph = docx.paragraphs[-1]
+        self.cm_answer(last_paragraph)
