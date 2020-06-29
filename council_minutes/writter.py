@@ -43,7 +43,7 @@ class UnifiedWritter():
 
     def generate_document_by_querie(self, query, precm):
         cases = Request.get_cases_by_query(query).order_by(
-            'academic_program', '_cls')
+            'academic_program', '_cls', 'student_name', 'date')
         casespre = [
             case for case in cases if case.is_pre()]
         casespos = [
