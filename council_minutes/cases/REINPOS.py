@@ -83,7 +83,6 @@ class REINPOS(Request):
             paragraph.add_run(self.str_cm[2].format(self.council_decision))
 
     def pcm(self, docx):
-        add_analysis_paragraph(docx, self.add_analysis())
         paragraph = docx.add_paragraph()
         paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
         paragraph.paragraph_format.space_after = Pt(0)
@@ -104,6 +103,10 @@ class REINPOS(Request):
             self.get_grade_option_display(),
             self.regulations['012|2014|VAC'][0]
         ))
+
+    # Method to add the analysis section into docx
+    def analysis(self, docx):
+        add_analysis_paragraph(docx, self.add_analysis())
 
     def add_analysis(self):
         analysis = []

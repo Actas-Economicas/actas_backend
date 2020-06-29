@@ -71,7 +71,6 @@ class APAS(Request):
             self.cm_ng(paragraph)
 
     def pcm(self, docx):
-        self.pcm_analysis(docx)
         self.pcm_answer(docx)
 
     def pcm_answer(self, docx):
@@ -89,6 +88,10 @@ class APAS(Request):
             self.cm_af(paragraph)
         else:
             self.cm_ng(paragraph)
+    
+    # Method to add the analysis section into docx
+    def analysis(self, docx):
+        self.pcm_analysis(docx)
 
     def cm_af(self, paragraph):
         paragraph.add_run(self.str_cm[1].format(

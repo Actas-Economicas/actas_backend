@@ -48,8 +48,6 @@ class AFPD(Request):
             self.academic_period, self.justification))
 
     def pcm(self, docx):
-        analysis = [self.str_pcm[0]] + self.extra_analysis
-        add_analysis_paragraph(docx, analysis)
         paragraph = docx.add_paragraph()
         paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
         paragraph.paragraph_format.space_after = Pt(0)
@@ -66,6 +64,11 @@ class AFPD(Request):
             self.limit_date.strftime('%d/%m/%Y '),
             self.student_name
         ))
+    
+    # Method to add the analysis section into docx
+    def analysis(self, docx):
+        analysis = [self.str_pcm[0]] + self.extra_analysis
+        add_analysis_paragraph(docx, analysis)
 
     def resource_analysis(self, docx):
         last_paragraph = docx.paragraphs[-1]

@@ -63,7 +63,6 @@ class RCPE(Request):
             self.get_approval_status_display().upper() + ':').font.bold = True
 
     def pcm(self, docx):
-        add_analysis_paragraph(docx, self.extra_analysis)
         paragraph = docx.add_paragraph()
         paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
         paragraph.paragraph_format.space_after = Pt(0)
@@ -76,6 +75,10 @@ class RCPE(Request):
         paragraph.add_run(
             # pylint: disable=no-member
             self.get_advisor_response_display().upper() + ':').font.bold = True
+    
+    # Method to add the analysis section into docx
+    def analysis(self, docx):
+        add_analysis_paragraph(docx, self.extra_analysis)
 
     def add_registers(self, docx):
         # pylint: disable=no-member, protected-access

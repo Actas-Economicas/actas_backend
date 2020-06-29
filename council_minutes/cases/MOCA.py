@@ -31,6 +31,10 @@ class MOCA(Request):
     def pcm_answer(self, docx):
         raise NotImplementedError('Not implemented yet!')
 
+    # Method to add the analysis section into docx
+    def analysis(self, docx):
+        raise NotImplementedError('Not implemented yet!')
+
     def resource_analysis(self, docx):
         last_paragraph = docx.paragraphs[-1]
         self.pcm_answer(last_paragraph)

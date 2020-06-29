@@ -79,7 +79,6 @@ class DJCT(Request):
         self.add_text(paragraph)
 
     def pcm(self, docx):
-        self.pcm_analysis_handler(docx)
         self.pcm_answer_handler(docx)
 
     def pcm_answer(self, paragraph):
@@ -87,6 +86,10 @@ class DJCT(Request):
             # pylint: disable=no-member
             self.get_advisor_response_display().upper() + ' ').font.bold = True
         self.add_text(paragraph)
+    
+    # Method to add the analysis section into docx
+    def analysis(self, docx):
+        self.pcm_analysis_handler(docx)
 
     def add_text(self, paragraph):
         if self.grade_option == Request.GRADE_OPTION_TRABAJO_FINAL_MAESTRIA:

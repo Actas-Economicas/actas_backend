@@ -28,7 +28,7 @@ class AAUT(Request):
 
     str_cm = [
         'admisión automática al programa {} ({}), a partir del periodo académico {}.',
-        'Debido a que {}justifica debidamente la solicitud.'
+        'Debido a que {}.'
     ]
 
     str_pcm = [
@@ -45,11 +45,7 @@ class AAUT(Request):
         paragraph.paragraph_format.space_after = Pt(0)
         paragraph.add_run(self.str_council_header + ' ')
         self.cm_answer(paragraph)
-        if self.council_decision == Request.council_decision.default or len(self.council_decision) == 0:
-            paragraph.add_run(self.str_cm[1].format(
-                '' if self.is_affirmative_response_approval_status() else 'no '))
-        else:
-            paragraph.add_run(self.council_decision + '. ')
+        paragraph.add_run(self.str_cm[1].format(self.council_decision))
         paragraph.add_run('({}. {}). '.format(
             self.regulations[self.regulation_list[0]][0],
             self.regulations[self.regulation_list[1]][0]))
@@ -66,7 +62,6 @@ class AAUT(Request):
             '' if self.is_affirmative_response_approval_status() else 'no ') + ' ')
 
     def pcm(self, docx):
-        self.pcm_analysis(docx)
         paragraph = docx.add_paragraph()
         paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
         paragraph.paragraph_format.space_after = Pt(0)
@@ -91,6 +86,10 @@ class AAUT(Request):
             self.get_academic_profile_display())]
         analysis_list += self.extra_analysis
         add_analysis_paragraph(docx, analysis_list)
+
+    # Method to add the analysis section into docx
+    def analysis(self, docx):
+        self.pcm_analysis(docx)
 
     def pcm_answer(self, paragraph):
         paragraph.add_run(

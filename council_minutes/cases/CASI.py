@@ -102,7 +102,6 @@ class CASI(Request):
         paragraph.add_run('({}).'.format(self.regulations['008|2008|CSU'][0]))
 
     def pcm(self, docx):
-        self.pcm_analysis(docx)
         paragraph = docx.add_paragraph()
         paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
         paragraph.paragraph_format.space_after = Pt(0)
@@ -132,6 +131,10 @@ class CASI(Request):
             paragraph.add_run(self.str_cm[1].format('no ') + ' ')
         else:
             paragraph.add_run(self.council_decision + ' ')
+
+    # Method to add the analysis section into docx
+    def analysis(self, docx):
+        self.pcm_analysis(docx)
 
     def pcm_analysis(self, docx):
         analysis_list = []

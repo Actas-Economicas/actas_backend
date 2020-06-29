@@ -83,7 +83,6 @@ class CPAC(Request):
         paragraph.add_run(answer)
 
     def pcm(self, docx):
-        self.pcm_analysis(docx)
         paragraph = self.add_paragraph(docx)
         paragraph.add_run(self.str_council_header + ' ')
         paragraph.add_run(
@@ -130,6 +129,10 @@ class CPAC(Request):
             self.year
         )
         paragraph.add_run(answer)
+    
+    # Method to add the analysis section into docx
+    def analysis(self, docx):
+        self.pcm_analysis(docx)
 
     def resource_analysis(self, docx):
         last_paragraph = docx.paragraphs[-1]

@@ -279,7 +279,6 @@ class TRASPRE(Request):
             self.cm_ng(paragraph)
 
     def pcm(self, docx):
-        self.pcm_analysis(docx)
         paragraph = docx.add_paragraph()
         paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
         paragraph.paragraph_format.space_after = Pt(0)
@@ -303,6 +302,10 @@ class TRASPRE(Request):
             self.cm_af(paragraph)
         else:
             self.cm_ng(paragraph)
+    
+    # Method to add the analysis section into docx
+    def analysis(self, docx):
+        self.pcm_analysis(docx)
 
     def get_next_period(self, actual_period):
         year = int(actual_period[0:4])

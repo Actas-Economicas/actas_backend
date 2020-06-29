@@ -43,7 +43,6 @@ class DCRE(Request):
         ))
 
     def pcm(self, docx):
-        add_analysis_paragraph(docx, self.extra_analysis)
         paragraph = docx.add_paragraph()
         paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
         paragraph.paragraph_format.space_after = Pt(0)
@@ -62,6 +61,10 @@ class DCRE(Request):
             self.regulations[self.regulation_list[0]][0],
             self.regulations[self.regulation_list[1]][0]
         ))
+    
+    # Method to add the analysis section into docx
+    def analysis(self, docx):
+        add_analysis_paragraph(docx, self.extra_analysis)
 
     def total_credits(self):
         total = 0

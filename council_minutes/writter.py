@@ -53,10 +53,14 @@ class UnifiedWritter():
         self.__generate()
 
     def __write_case_cm(self, case):
+        header(case, self.document)
+        case.analysis(self.document)
+        self.document.paragraphs[-1].add_run('\n').bold = True
         case.cm(self.document)
 
     def __write_case_pcm(self, case):
         header(case, self.document)
+        case.analysis(self.document)
         case.pcm(self.document)
 
     def __write_document_header(self, precm):

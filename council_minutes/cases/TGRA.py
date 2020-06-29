@@ -70,7 +70,6 @@ class TGRA(Request):
             self.academic_period, self.get_type_tgra_display(), self.professor, self.council_decision))
 
     def pcm(self, docx):
-        self.pcm_analysis(docx)
         paragraph = docx.add_paragraph()
         paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
         paragraph.paragraph_format.space_after = Pt(0)
@@ -83,6 +82,10 @@ class TGRA(Request):
                            [['2015289' if self.type_tgra == 'TP' else '202599',
                              self.get_type_tgra_display(), '1',
                              Subject.TIP_PRE_TRAB_GRADO[1], '6']])
+    
+    # Method to add the analysis section into docx
+    def analysis(self, docx):
+        self.pcm_analysis(docx)
 
     def pcm_analysis(self, docx):
         analysis_list = []

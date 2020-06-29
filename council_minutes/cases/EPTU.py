@@ -101,7 +101,6 @@ class EPTU(Request):
             Request.regulations[self.regulation_list[0]][0]))
 
     def pcm(self, docx):
-        self.pcm_analysis(docx)
         paragraph = docx.add_paragraph()
         paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
         paragraph.paragraph_format.space_after = Pt(0)
@@ -129,6 +128,10 @@ class EPTU(Request):
             self.academic_program,
             self.target_period
         ))
+    
+    # Method to add the analysis section into docx
+    def analysis(self, docx):
+        self.pcm_analysis(docx)
 
     def pcm_cna(self, paragraph):
         if self.cna == self.CNA_MAXIMO_EXCEDIDO:

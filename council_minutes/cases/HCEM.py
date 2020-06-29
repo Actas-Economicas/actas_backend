@@ -240,7 +240,6 @@ class HCEM(Request):
                     print(e)
 
     def pcm(self, docx):
-        self.add_analysis(docx)
         if self.counter() == 6:
             paragraph = docx.add_paragraph()
             paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
@@ -264,6 +263,10 @@ class HCEM(Request):
             paragraph.add_run(' ' + self.str_cm[4] + ':')
         else:
             paragraph.add_run(' ' + self.str_cm[5] + ':')
+    
+    # Method to add the analysis section into docx
+    def analysis(self, docx):
+        self.add_analysis(docx)
 
     def add_single_table(self, docx):
         data = []

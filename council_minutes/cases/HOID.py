@@ -59,8 +59,6 @@ class HOID(Request):
         self.add_answer(paragraph)
 
     def pcm(self, docx):
-        analysis = self.str_pcm[0].format(self.grade_got, self.institution)
-        add_analysis_paragraph(docx, [analysis])
         paragraph = docx.add_paragraph()
         paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
         paragraph.paragraph_format.space_after = Pt(0)
@@ -75,6 +73,11 @@ class HOID(Request):
             # pylint: disable=no-member
             self.get_advisor_response_display().upper() + ' ').font.bold = True
         self.add_answer(paragraph)
+
+    # Method to add the analysis section into docx
+    def analysis(self, docx):
+        analysis = self.str_pcm[0].format(self.grade_got, self.institution)
+        add_analysis_paragraph(docx, [analysis] + self.extra_analysis)
 
     def add_answer(self, paragraph):
         paragraph.add_run(self.str_ans[0].format(self.academic_period))

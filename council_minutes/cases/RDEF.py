@@ -45,7 +45,6 @@ class RDEF(Request):
         paragraph.add_run('.')
 
     def pcm(self, docx):
-        self.pcm_analysis(docx)
         paragraph = docx.add_paragraph()
         paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
         paragraph.paragraph_format.space_after = Pt(0)
@@ -63,6 +62,10 @@ class RDEF(Request):
             paragraph.add_run(
                 ' ' + self.str_cm[1] + ' ' + self.council_decision)
         paragraph.add_run('.')
+    
+    # Method to add the analysis section into docx
+    def analysis(self, docx):
+        self.pcm_analysis(docx)
 
     def pcm_analysis(self, docx):
         final_analysis = []

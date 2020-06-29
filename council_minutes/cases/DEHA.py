@@ -65,6 +65,10 @@ class DEHA(Request):
         paragraph.style = 'List Bullet'
         self.pcm_retrieve(paragraph)
 
+    # Method to add the analysis section into docx
+    def analysis(self, docx):
+        self.pcm_analysis(docx)
+
     def pcm_analysis(self, docx):
         analysis_list = []
         analysis_list += self.extra_analysis

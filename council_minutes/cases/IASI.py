@@ -92,7 +92,6 @@ class IASI(Request):
         paragraph.add_run('({}).'.format(self.regulations['008|2008|CSU'][0]))
 
     def pcm(self, docx):
-        self.pcm_analysis(docx)
         paragraph = docx.add_paragraph()
         paragraph.add_run(self.str_answer + ': ').bold = True
         sapproved = []
@@ -116,6 +115,10 @@ class IASI(Request):
             paragraph.paragraph_format.space_after = Pt(0)
             self.pcm_answer_not_approved(paragraph)
             table_subjects(docx, Subject.subjects_to_array(snotapproved))
+    
+    # Method to add the analysis section into docx
+    def analysis(self, docx):
+        self.pcm_analysis(docx)
 
     def pcm_analysis(self, docx):
         # pylint: disable=no-member

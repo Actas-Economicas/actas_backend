@@ -45,7 +45,6 @@ class EMCA(Request):
             Request.regulations['070|2009|CAC'][0]))
 
     def pcm(self, docx):
-        self.pcm_analysis(docx)
         paragraph = docx.add_paragraph()
         paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
         paragraph.paragraph_format.space_after = Pt(0)
@@ -62,6 +61,10 @@ class EMCA(Request):
         paragraph.add_run(self.council_decision)
         paragraph.add_run(self.str_cm[1].format(
             Request.regulations['070|2009|CAC'][0]))
+        
+    # Method to add the analysis section into docx
+    def analysis(self, docx):
+        self.pcm_analysis(docx)
 
     def pcm_analysis(self, docx):
         final_analysis = []

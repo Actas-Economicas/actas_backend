@@ -53,7 +53,6 @@ class RCUP(Request):
             self.regulations[self.regulation_list[0]][0]))
 
     def pcm(self, docx):
-        add_analysis_paragraph(docx, self.add_analysis())
         paragraph = docx.add_paragraph()
         paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
         paragraph.paragraph_format.space_after = Pt(0)
@@ -72,6 +71,10 @@ class RCUP(Request):
             value = self.str_pcm_neg[0]
         paragraph.add_run(value.format(
             self.academic_period, self.regulations[self.regulation_list[0]][0]))
+    
+    # Method to add the analysis section into docx
+    def analysis(self, docx):
+        add_analysis_paragraph(docx, self.add_analysis())
 
     def add_analysis(self):
         # pylint: disable=no-member

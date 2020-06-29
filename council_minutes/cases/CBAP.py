@@ -51,7 +51,6 @@ class CBAP(Request):
 
     # PCM for CBAP not found. Using the same of cm.
     def pcm(self, docx):
-        self.pcm_analysis(docx)
         paragraph = docx.add_paragraph()
         paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
         paragraph.paragraph_format.space_after = Pt(0)
@@ -75,6 +74,10 @@ class CBAP(Request):
         paragraph.add_run(self.str_cm[3])
         paragraph.add_run(
             self.str_cm[4] + self.regulations['026|2012|CSU'][0] + ').')
+
+    # Method to add the analysis section into docx
+    def analysis(self, docx):
+        self.pcm_analysis(docx)
 
     def resource_analysis(self, docx):
         last_paragraph = docx.paragraphs[-1]

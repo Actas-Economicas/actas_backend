@@ -59,7 +59,6 @@ class DNCT(Request):
         raise NotImplementedError
 
     def pcm(self, docx):
-        self.pcm_analysis_handler(docx)
         self.pcm_answer_handler(docx)
 
     def pcm_answer(self, paragraph):
@@ -108,6 +107,10 @@ class DNCT(Request):
             self.add_proffesors(self.proffesors_thesis)
         ))
         paragraph.style = 'List Bullet'
+
+    # Method to add the analysis section into docx
+    def analysis(self, docx):
+        self.pcm_analysis_handler(docx)
 
     def pcm_analysis_handler(self, docx):
         analysis = self.pcm_analysis_phd()

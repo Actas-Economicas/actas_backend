@@ -47,7 +47,6 @@ class CINF(Request):
             self.cm_ng(paragraph)
 
     def pcm(self, docx):
-        self.pcm_analysis(docx)
         paragraph = docx.add_paragraph()
         paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
         paragraph.paragraph_format.space_after = Pt(0)
@@ -64,6 +63,10 @@ class CINF(Request):
             self.pcm_answers_af(paragraph)
         else:
             self.pcm_answers_ng(paragraph)
+    
+    # Method to add the analysis section into docx
+    def analysis(self, docx):
+        self.pcm_analysis(docx)
 
     def cm_af(self, paragraph):
         paragraph.add_run(self.council_decision + '. ' +

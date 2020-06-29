@@ -88,7 +88,6 @@ class CPTE(Request):
             self.cm_ng(paragraph)
 
     def pcm(self, docx):
-        self.pcm_analysis(docx)
         paragraph = docx.add_paragraph()
         paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
         paragraph.paragraph_format.space_after = Pt(0)
@@ -166,6 +165,10 @@ class CPTE(Request):
         paragraph.add_run(
             ' ' + self.str_cm[9] + ' ' + self.council_decision + '.')
 
+    # Method to add the analysis section into docx
+    def analysis(self, docx):
+        self.pcm_analysis(docx)
+    
     def pcm_analysis(self, docx):
         if self.grade_option in [self.GO_TESIS_MAESTRIA, self.GO_TESIS_DOCTORADO]:
             profile = 'investigación'

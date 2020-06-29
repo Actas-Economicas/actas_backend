@@ -124,7 +124,6 @@ class APGD(Request):
             self.get_approval_status_display().upper() + ':').font.bold = True
 
     def pcm(self, docx):
-        self.pcm_analysis(docx)
         paragraph = docx.add_paragraph()
         paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
         paragraph.paragraph_format.space_after = Pt(0)
@@ -145,6 +144,10 @@ class APGD(Request):
         # pylint: disable=no-member
         paragraph.add_run(
             self.get_advisor_response_display().upper() + ':').font.bold = True
+
+    # Method to add the analysis section into docx
+    def analysis(self, docx):
+        self.pcm_analysis(docx)
 
     def pcm_analysis(self, docx):
         # pylint: disable=no-member

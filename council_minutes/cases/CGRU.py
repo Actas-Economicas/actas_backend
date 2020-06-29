@@ -54,7 +54,6 @@ class CGRU(Request):
         ))
 
     def pcm(self, docx):
-        add_analysis_paragraph(docx, self.create_analysis())
         paragraph = docx.add_paragraph()
         paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
         paragraph.paragraph_format.space_after = Pt(0)
@@ -70,6 +69,10 @@ class CGRU(Request):
             self.name, self.code, self.academic_period, self.group,
             self.new_group, self.professor, self.get_department_display(), self.council_decision
         ))
+
+    # Method to add the analysis section into docx
+    def analysis(self, docx):
+        add_analysis_paragraph(docx, self.create_analysis())
 
     def create_analysis(self):
         return [

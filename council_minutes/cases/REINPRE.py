@@ -463,7 +463,6 @@ class REINPRE(Request):
         return analysis + self.extra_analysis
 
     def pcm(self, docx):
-        add_analysis_paragraph(docx, self.get_analysis())
         paragraph = docx.add_paragraph()
         paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
         paragraph.paragraph_format.space_after = Pt(0)
@@ -476,6 +475,10 @@ class REINPRE(Request):
         self.rein_academic_info(docx)
         self.rein_credits_summary(docx)
         self.rein_recommends(docx)
+
+    # Method to add the analysis section into docx
+    def analysis(self, docx):
+        add_analysis_paragraph(docx, self.get_analysis())
 
     def cm(self, docx):
         paragraph = docx.add_paragraph()

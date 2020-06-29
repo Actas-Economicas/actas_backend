@@ -157,7 +157,6 @@ class CPER(Request):
         ])
 
     def pcm(self, docx):
-        self.pcm_analysis(docx)
         affirmative = self.is_affirmative_response_advisor_response()
         has_subjects = len(self.subjects_change_tipology) + \
             len(self.subjects_homologations) > 0
@@ -179,6 +178,10 @@ class CPER(Request):
             self.academic_program,
             self.get_destin_profile_display(),
             '' if self.is_affirmative_response_advisor_response() else 'no'))
+    
+    # Method to add the analysis section into docx
+    def analysis(self, docx):
+        self.pcm_analysis(docx)
 
     def pcm_analysis(self, docx):
         analysis_list = []

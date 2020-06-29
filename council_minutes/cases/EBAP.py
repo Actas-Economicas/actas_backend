@@ -42,7 +42,6 @@ class EBAP(Request):
             '' if self.is_affirmative_response_approval_status() else 'no ') + '.')
 
     def pcm(self, docx):
-        self.pcm_analysis(docx)
         paragraph = docx.add_paragraph()
         paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
         paragraph.paragraph_format.space_after = Pt(0)
@@ -67,6 +66,10 @@ class EBAP(Request):
             # pylint: disable=no-member
             self.get_advisor_response_display().upper() + ' ').font.bold = True
         paragraph.add_run(self.str_cm[0].format(self.council_decision))
+
+    # Method to add the analysis section into docx
+    def analysis(self, docx):
+        self.pcm_analysis(docx)
 
     def resource_analysis(self, docx):
         last_paragraph = docx.paragraphs[-1]

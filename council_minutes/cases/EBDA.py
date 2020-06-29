@@ -57,10 +57,6 @@ class EBDA(Request):
         paragraph = docx.add_paragraph()
         paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
         paragraph.paragraph_format.space_after = Pt(0)
-        self.pcm_analysis(docx)
-        paragraph = docx.add_paragraph()
-        paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
-        paragraph.paragraph_format.space_after = Pt(0)
         paragraph.add_run(self.str_answer + ': ').font.bold = True
         paragraph.add_run(self.str_council_header + ' ')
         self.cm_answer(paragraph)
@@ -75,6 +71,10 @@ class EBDA(Request):
             self.academic_program,
             self.target_period
         ))
+    
+    # Method to add the analysis section into docx
+    def analysis(self, docx):
+        self.pcm_analysis(docx)
 
     def pcm_analysis(self, docx):
         analysis_list = []

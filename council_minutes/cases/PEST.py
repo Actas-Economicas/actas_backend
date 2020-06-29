@@ -82,7 +82,6 @@ class PEST(Request):
             paragraph, self.is_affirmative_response_approval_status())
 
     def pcm(self, docx):
-        add_analysis_paragraph(docx, self.add_analysis())
         paragraph = docx.add_paragraph()
         paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
         paragraph.paragraph_format.space_after = Pt(0)
@@ -97,6 +96,10 @@ class PEST(Request):
             self.get_advisor_response_display().upper() + ' ').font.bold = True
         self.add_text(
             paragraph, self.is_affirmative_response_advisor_response())
+
+    # Method to add the analysis section into docx
+    def analysis(self, docx):
+        add_analysis_paragraph(docx, self.add_analysis())
 
     def add_text(self, paragraph, affirmative):
         code, _credits = self.SUBJECT_INFO[self.subject]

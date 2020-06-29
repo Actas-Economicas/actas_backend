@@ -46,7 +46,6 @@ class ADIC(Request):
         self.add_text(paragraph)
 
     def pcm(self, docx):
-        add_analysis_paragraph(docx, self.fill_analysis())
         paragraph = docx.add_paragraph()
         paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
         paragraph.paragraph_format.space_after = Pt(0)
@@ -59,6 +58,10 @@ class ADIC(Request):
             # pylint: disable=no-member
             self.get_advisor_response_display().upper() + ' ').font.bold = True
         self.add_text(paragraph)
+
+    # Method to add the analysis section into docx
+    def analysis(self, docx):
+        add_analysis_paragraph(docx, self.fill_analysis())
 
     def fill_analysis(self):
         # pylint: disable=no-member

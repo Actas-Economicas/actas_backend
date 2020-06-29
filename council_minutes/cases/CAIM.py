@@ -92,7 +92,6 @@ class CAIM(Request):
         paragraph.add_run(self.str_cm[0].format(self.academic_period))
 
     def pcm(self, docx):
-        self.pcm_analysis(docx)
         if self.is_affirmative_response_advisor_response():
             self.pcm_ap(docx)
         else:
@@ -139,6 +138,10 @@ class CAIM(Request):
             self.get_advisor_response_display().upper() + ' ').font.bold = True
         # pylint: disable=no-member
         paragraph.add_run(self.str_cm[0].format(self.academic_period))
+    
+    # Method to add the analysis section into docx
+    def analysis(self, docx):
+        self.pcm_analysis(docx)
 
     def pcm_analysis(self, docx):
         analysis_list = []

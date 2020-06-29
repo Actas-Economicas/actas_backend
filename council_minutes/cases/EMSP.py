@@ -63,7 +63,6 @@ class EMSP(Request):
             ))
 
     def pcm(self, docx):
-        self.pcm_analysis(docx)
         paragraph = docx.add_paragraph()
         paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
         paragraph.paragraph_format.space_after = Pt(0)
@@ -89,6 +88,10 @@ class EMSP(Request):
                     ' ' + self.str_pcm[1] + self.council_decision),
                 self.regulations['002|2011|CFA'][0]
             ))
+
+    # Method to add the analysis section into docx
+    def analysis(self, docx):
+        self.pcm_analysis(docx)
 
     def pcm_analysis(self, docx):
         analysis_list = []

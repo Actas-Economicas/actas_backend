@@ -81,7 +81,6 @@ class REPO(Request):
         paragraph.add_run(self.str_cm[1].format(target.consecutive_minute, target.year))
 
     def pcm(self, docx):
-        self.pcm_analysis(docx)
         paragraph = docx.add_paragraph()
         paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
         paragraph.paragraph_format.space_after = Pt(0)
@@ -100,6 +99,10 @@ class REPO(Request):
             # pylint: disable=no-member
             ' ' + self.get_advisor_response_display().upper() + ' ').font.bold = True
         paragraph.add_run(self.str_pcm[1].format(target.consecutive_minute, target.year))
+    
+    # Method to add the analysis section into docx
+    def analysis(self, docx):
+        self.pcm_analysis(docx)
 
     def pcm_analysis(self, docx):
         analysis_list = []
