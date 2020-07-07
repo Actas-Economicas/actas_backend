@@ -5,6 +5,7 @@ from docx.shared import RGBColor, Pt
 from .models import Request
 from .cases.case_utils import header
 from docx.enum.style import WD_STYLE_TYPE
+from docx.enum.text import WD_ALIGN_PARAGRAPH
 
 
 class UnifiedWritter():
@@ -56,7 +57,18 @@ class UnifiedWritter():
         header(case, self.document)
         case.analysis(self.document)
         self.document.paragraphs[-1].add_run('\n').bold = True
+        self._write_comitee_recomendation(case)
         case.cm(self.document)
+    
+    def _write_comitee_recomendation(self, case):
+        paragraph = self.document.add_paragraph()
+        paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+        paragraph.paragraph_format.space_after = Pt(0)
+        paragraph.add_run('En el acta de comité número {} de {}, '.format(
+            case.consecutive_minute_ac, case.year))
+        paragraph.add_run(case.str_comittee_header.lower())
+        case.pcm_answer(paragraph)
+        paragraph.add_run('\n')
 
     def __write_case_pcm(self, case):
         header(case, self.document)
