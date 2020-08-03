@@ -27,7 +27,7 @@ class CTIP(Request):
     ]
 
     str_pcm = [
-        'Se solicita cambiar la tipología de la asignatura {} ({}). Tipología original: {}. Tipol' +
+        'Se solicita cambiar la tipología de la asignatura {} ({}). Tipología original: {}. Tipo' +
         'logía destino: {}. Nota obtenida: {}.'
     ]
 
@@ -87,6 +87,7 @@ class CTIP(Request):
                 subject.new_tipology[1],
                 subject.grade
             )]
+            print(subject.grade)
         analysis_list += self.extra_analysis
         add_analysis_paragraph(docx, analysis_list)
 

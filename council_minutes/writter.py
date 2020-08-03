@@ -66,7 +66,7 @@ class UnifiedWritter():
         paragraph.paragraph_format.space_after = Pt(0)
         paragraph.add_run('En el acta de comité número {} de {}, '.format(
             case.consecutive_minute_ac, case.year))
-        paragraph.add_run(case.str_comittee_header.lower())
+        paragraph.add_run(case.str_comittee_header.lower() + ' ')
         case.pcm_answer(paragraph)
         paragraph.add_run('\n')
 

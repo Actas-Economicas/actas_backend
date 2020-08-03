@@ -119,6 +119,9 @@ def num_to_month(month):
 
 def header(request, docx_):
     para = docx_.add_paragraph()
+    para.add_run('Plan de Estudios:\t{} ({})\n'.format(
+        request.get_academic_program_display(), request.academic_program))
+    para.add_run('Periodo Académico:\t{}\n'.format(request.academic_period))
     para.add_run('Tipo de solicitud:\t{}\n'.format(request.full_name))
     para.add_run('Justificación:\t\t{}\n'.format(
         request.student_justification))
