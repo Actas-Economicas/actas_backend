@@ -32,7 +32,7 @@ class CPAC(Request):
     str_cm_reason = [
         'debido a que justifica adecauadamente la fuerza mayor o caso fortuito.',
         'debido a que la situación expuesta no constituye causa extraña (no es una situación ' +
-        'intempestiva, insuperable o irresistible), por tanto, no es una situación de fuerza' +
+        'intempestiva, insuperable o irresistible), por tanto, no es una situación de fuerza ' +
         'mayor o caso fortuito que implique la cancelación del periodo académico. '
     ]
 
@@ -86,7 +86,7 @@ class CPAC(Request):
         paragraph = self.add_paragraph(docx)
         paragraph.add_run(self.str_council_header + ' ')
         paragraph.add_run(
-            self.get_approval_status_display().upper() + ':').font.bold = True
+            self.get_advisor_response_display().upper() + ':').font.bold = True
         self.cm_answer(self.add_paragraph_bullet_list(docx))
         self.cm_answer1(self.add_paragraph_bullet_list(docx))
 

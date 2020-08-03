@@ -3,7 +3,7 @@ import functools
 from docx.shared import Pt
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.enum.table import WD_ALIGN_VERTICAL
-from mongoengine import StringField, IntField, FloatField, BooleanField, DateField
+from mongoengine import StringField, IntField, FloatField, BooleanField, DateTimeField
 from .case_utils import string_to_date, table_general_data
 from .case_utils import table_credits_summary, table_recommend, add_analysis_paragraph
 from ..models import Request
@@ -59,7 +59,7 @@ class REINPRE(Request):
         required=True, display='Créditos pendientes inglés', default=0)
     credits_coursed = IntField(required=True,
                                display='Créditos cursados (Aprobados + No Aprobados)' +
-                               ' con calificación numérica')
+                               ' con calificación numérica', default=0)
 
     # Exiged credits
     exi_fund_m = IntField(
@@ -88,7 +88,7 @@ class REINPRE(Request):
     comitee_act = StringField(
         required=True, display='Número de acta de comité', default='00')
 
-    comitee_date = DateField(
+    comitee_date = DateTimeField(
         required=True, display='Fecha de reunión del comité', default=datetime.date.today
     )
 

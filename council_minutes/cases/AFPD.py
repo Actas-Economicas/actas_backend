@@ -1,7 +1,7 @@
 import datetime
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.shared import Pt
-from mongoengine import StringField, DateField
+from mongoengine import StringField, DateTimeField
 from ..models import Request
 from .case_utils import add_analysis_paragraph
 
@@ -13,7 +13,7 @@ class AFPD(Request):
 
     justification = StringField(
         required=True, display='Justificación de la decisión', default='')
-    limit_date = DateField(
+    limit_date = DateTimeField(
         required=True, display='Fecha Límite', default=datetime.date.today)
 
     regulation_list = []
@@ -26,7 +26,7 @@ class AFPD(Request):
     ]
     str_pcm = [
         'El estudiante tiene la historia académica activa.',
-        'recomiendar al Consejo de Facultad presentar con concepto positivo al Comité ' +
+        'recomendar al Consejo de Facultad presentar con concepto positivo al Comité ' +
         'de Matrículas de la Sede Bogotá, la expedición de un único recibo correspondiente ' +
         'a los derechos académicos y administrativos para el periodo académico {} ' +
         'y se le concede como fecha de pago el {}, teniendo en cuenta el estado de pago ' +
