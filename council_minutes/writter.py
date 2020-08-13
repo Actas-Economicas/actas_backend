@@ -45,6 +45,11 @@ class UnifiedWritter():
     def generate_document_by_querie(self, query, precm):
         cases = Request.get_cases_by_query(query).order_by(
             'academic_program', '_cls', 'student_name', 'date')
+        if len(cases) > 1:
+            if precm:
+                cases = cases.filter(advisor_response__nin = [Request.ARCR_EN_ESPERA])
+            else:
+                cases = cases.filter(approval_status__nin = [Request.AS_EN_ESPERA])
         casespre = [
             case for case in cases if case.is_pre()]
         casespos = [
