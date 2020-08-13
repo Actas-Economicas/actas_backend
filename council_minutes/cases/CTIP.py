@@ -87,7 +87,6 @@ class CTIP(Request):
                 subject.new_tipology[1],
                 subject.grade
             )]
-            print(subject.grade)
         analysis_list += self.extra_analysis
         add_analysis_paragraph(docx, analysis_list)
 

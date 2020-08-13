@@ -127,6 +127,7 @@ def header(request, docx_):
         request.student_justification))
     para.add_run('Soportes:\t\t{}\n'.format(request.supports))
     month = num_to_month(request.date.strftime('%m'))
+    para.add_run('Medio radicación:\t{}\n'.format(request.get_handle_method_display()))
     para.add_run('Fecha radicación:\t{}\n'.format(
         request.date.strftime("%d{}%Y".format(month))))
     para.add_run('Normatividad:')

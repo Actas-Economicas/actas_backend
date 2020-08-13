@@ -336,7 +336,7 @@ class TRASPRE(Request):
         final_analysis += [aux_str + self.list_analysis[2]]
         aux_str = 'T' if self.have_entitled_to_enrrol else 'No t'
         final_analysis += [aux_str + self.list_analysis[3]]
-        aux_str = 'H' if self.at_least_one_period else 'No h'
+        aux_str = 'E' if self.at_least_one_period else 'No e'
         final_analysis += [aux_str + self.list_analysis[4]
                            .format(Request.regulations['008|2008|CSU'][0])]
         final_analysis += [self.list_analysis[5].format(

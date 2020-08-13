@@ -101,7 +101,7 @@ class TEPR(Request):
     def pcm_answer(self, paragraph):
         paragraph.add_run(
             # pylint: disable=no-member
-            self.get_approval_status_display().upper() + ' ').font.bold = True
+            self.get_advisor_response_display().upper() + ' ').font.bold = True
         paragraph.add_run(
             self.str_cm[0].format(
                 # pylint: disable=no-member
