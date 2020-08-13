@@ -147,16 +147,16 @@ class Request(DynamicDocument):
     AS_ANULADA = 'AN'
     AS_RENUNCIA = 'RN'
     AS_CHOICES = (
-        (AS_APLAZA, 'Aplaza'),
+        # (AS_APLAZA, 'Aplaza'),
         (AS_APRUEBA, 'Aprueba'),
-        (AS_EN_TRAMITE, 'En trámite'),
-        (AS_EN_ESPERA, 'En espera'),
+        # (AS_EN_TRAMITE, 'En trámite'),
+        (AS_EN_ESPERA, 'TEMPORAL'),
         (AS_NO_APRUEBA, 'No Aprueba'),
-        (AS_SE_INHIBE, 'Se Inhibe'),
+        # (AS_SE_INHIBE, 'Se Inhibe'),
         (AS_CONSEJO_RECOMIENDA, 'Consejo Recomienda'),
         (AS_CONSEJO_NO_RECOMIENDA, 'Consejo No Recomienda'),
-        (AS_ANULADA, 'Anular'),
-        (AS_RENUNCIA, 'Desistir'),
+        # (AS_ANULADA, 'Anular'),
+        # (AS_RENUNCIA, 'Desistir'),
     )
     # ARCR Advisor Response - Committee Recommends
     ARCR_APROBAR = 'CAP'
@@ -167,9 +167,9 @@ class Request(DynamicDocument):
     ARCR_CHOICES = (
         (ARCR_APROBAR, 'Aprobar'),
         (ARCR_NO_APROBAR, 'No Aprobar'),
-        (ARCR_RECOMENDAR, 'Recomendar'),
-        (ARCR_NO_RECOMENDAR, 'No recomendar'),
-        (ARCR_EN_ESPERA, 'En espera'),
+        # (ARCR_RECOMENDAR, 'Recomendar'),
+        # (ARCR_NO_RECOMENDAR, 'No recomendar'),
+        (ARCR_EN_ESPERA, 'TEMPORAL'),
     )
 
     DNI_TYPE_CEDULA_DE_CIUDADANIA = 'CC'
@@ -288,9 +288,9 @@ class Request(DynamicDocument):
         default=AS_EN_ESPERA, display='Estado de Aprobación')
     advisor_response = StringField(
         min_length=3, max_length=3, choices=ARCR_CHOICES,
-        default=ARCR_EN_ESPERA, display='Respuesta del Comité')
+        default=ARCR_EN_ESPERA, display='Recomendación del Comité')
     council_decision = StringField(
-        max_length=255, default='justifica debidamente la solicitud', display='Justificación del Consejo')
+        max_length=255, default='** --- Aqui va la justificación del consejo --- **', display='Justificación del Consejo')
     student_justification = StringField(
         default='', display='Justificación del Estudiante')
     supports = StringField(default='', display='Soportes')
